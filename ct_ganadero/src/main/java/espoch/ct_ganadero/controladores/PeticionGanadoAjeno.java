@@ -9,13 +9,11 @@ import lombok.ToString;
 @AllArgsConstructor
 @EqualsAndHashCode
 @ToString
-public class PeticionGanadoPropio {
+public class PeticionGanadoAjeno {
     private final String id;
     private final String id_raza;
     private final String nombre;
     private final char sexo;
-    private final String id_padre;
-    private final String id_madre;
-    private final String estado;
-    private final String fecha_nacimiento;
+    private final String id_procedencia;
+    private final String edad;
 }

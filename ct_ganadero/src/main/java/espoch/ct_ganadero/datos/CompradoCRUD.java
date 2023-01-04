@@ -33,6 +33,11 @@ public class CompradoCRUD implements iCRUD<Comprado> {
         Comprado cabezaGanadoCompradaBuscada = repComprado.findById(elemento.getId()).get();
         return !(cabezaGanadoCompradaBuscada == null);
     }
+    
+    public boolean contiene(String id) {
+        Comprado cabezaGanadoCompradaBuscada = repComprado.findById(id).get();
+        return !(cabezaGanadoCompradaBuscada == null);
+    }
 
     @Override
     public void modificar(Comprado elemento, Comprado nuevoElemento) throws Exception {
@@ -52,5 +57,11 @@ public class CompradoCRUD implements iCRUD<Comprado> {
         if (!contiene(elemento))
             throw new Exception("Elemento no fue encontrado!");
         return repComprado.findById(elemento.getId()).get();
+    }
+    
+    public Comprado buscar(String id) throws Exception {
+        if (!contiene(id))
+            throw new Exception("Elemento no fue encontrado!");
+        return repComprado.findById(id).get();
     }
 }

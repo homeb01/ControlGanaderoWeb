@@ -33,6 +33,11 @@ public class AjenoCRUD implements iCRUD<Ajeno> {
         Ajeno elementoBuscado = repAjeno.findById(elemento.getId()).get();
         return !(elementoBuscado == null);
     }
+    
+    public boolean contiene(String id) {
+        Ajeno elementoBuscado = repAjeno.findById(id).get();
+        return !(elementoBuscado == null);
+    }
 
     @Override
     public void modificar(Ajeno elemento, Ajeno nuevoElemento) throws Exception {
@@ -52,5 +57,11 @@ public class AjenoCRUD implements iCRUD<Ajeno> {
         if (!contiene(elemento))
             throw new Exception("Elemento no fue encontrado!");
         return repAjeno.findById(elemento.getId()).get();
+    }
+    
+    public Ajeno buscar(String id) throws Exception {
+        if (!contiene(id))
+            throw new Exception("Elemento no fue encontrado!");
+        return repAjeno.findById(id).get();
     }
 }

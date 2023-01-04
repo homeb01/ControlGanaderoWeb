@@ -1,5 +1,6 @@
 package espoch.ct_ganadero.modelo;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -19,6 +20,7 @@ public class Procedencia implements Serializable {
     private Integer id;
     
     @OneToMany(mappedBy = "procedencia", cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
+    @JsonIgnore
     private List<Ajeno> cabezasAjenas;
     
     @Column(name = "procedencia")
