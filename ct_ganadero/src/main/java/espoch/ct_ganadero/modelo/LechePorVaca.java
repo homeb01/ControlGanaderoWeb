@@ -39,8 +39,7 @@ public class LechePorVaca {
     public LechePorVaca() {
     }
 
-    public LechePorVaca(Integer id, RegistroLeche registro, Propio cabezaGanado, Usuario usuario, String turno, int total) {
-        this.id = id;
+    public LechePorVaca(RegistroLeche registro, Propio cabezaGanado, Usuario usuario, String turno, int total) {
         this.registro = registro;
         this.cabezaGanado = cabezaGanado;
         this.usuario = usuario;

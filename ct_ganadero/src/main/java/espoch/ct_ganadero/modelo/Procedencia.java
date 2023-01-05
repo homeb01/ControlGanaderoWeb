@@ -19,7 +19,7 @@ public class Procedencia implements Serializable {
     @Column(name = "id_procedencia")
     private Integer id;
     
-    @OneToMany(mappedBy = "procedencia", cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "procedencia", fetch = FetchType.EAGER)
     @JsonIgnore
     private List<Ajeno> cabezasAjenas;
     

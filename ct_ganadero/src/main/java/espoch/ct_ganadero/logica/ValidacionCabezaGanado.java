@@ -1,6 +1,6 @@
 package espoch.ct_ganadero.logica;
 
-public class CabezaGanadoValidator {
+public class ValidacionCabezaGanado {
 
     public static boolean idValido(String id) {
         return true;

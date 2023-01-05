@@ -25,12 +25,12 @@ public class RegistroLecheCRUD implements iCRUD<RegistroLeche> {
 
     @Override
     public boolean contiene(RegistroLeche elemento) {
-        RegistroLeche buscado = repositorio.findById(elemento.getFechaRegistro()).get();
+        RegistroLeche buscado = repositorio.findById(elemento.getFechaRegistro()).orElse(null);
         return !(buscado == null);
     }
     
     public boolean contiene(Calendar id) {
-        RegistroLeche buscado = repositorio.findById(id).get();
+        RegistroLeche buscado = repositorio.findById(id).orElse(null);
         return !(buscado == null);
     }
 

@@ -38,6 +38,11 @@ public class UsuarioCRUD implements iCRUD<Usuario> {
         eliminar(elemento);
         guardar(nuevoElemento);
     }
+    
+    public void modificar(String id, Usuario nuevoElemento) throws Exception {
+        eliminar(id);
+        guardar(nuevoElemento);
+    }
 
     @Override
     public void eliminar(Usuario elemento) throws Exception {
@@ -45,6 +50,15 @@ public class UsuarioCRUD implements iCRUD<Usuario> {
             throw new Exception("Elemento no fue encontrado!");
         }
         repositorio.delete(elemento);
+    }
+    
+    public Usuario eliminar(String id) throws Exception {
+        if (!contiene(id)) {
+            throw new Exception("Elemento no fue encontrado!");
+        }
+        Usuario usuario = buscar(id);
+        repositorio.deleteById(id);
+        return usuario;
     }
 
     @Override

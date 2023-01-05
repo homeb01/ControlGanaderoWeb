@@ -27,7 +27,7 @@ public class LechePorVacaCRUD implements iCRUD<LechePorVaca> {
 
     @Override
     public boolean contiene(LechePorVaca elemento) {
-        LechePorVaca buscado = repositorio.findById(elemento.getId()).get();
+        LechePorVaca buscado = repositorio.findById(elemento.getId()).orElse(null);
         return !(buscado == null);
     }
 
@@ -51,5 +51,10 @@ public class LechePorVacaCRUD implements iCRUD<LechePorVaca> {
             throw new Exception("Elemento no fue encontrado!");
         }
         return repositorio.findById(elemento.getId()).get();
+    }
+    
+    public boolean existeRegistro(String idCabezaGanado, String idRegistro) throws Exception {
+        LechePorVaca registro = repositorio.findByVacaAndRegistro(idCabezaGanado, idRegistro);
+        return registro != null;
     }
 }

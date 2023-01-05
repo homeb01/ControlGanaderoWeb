@@ -1,6 +1,6 @@
 package espoch.ct_ganadero.logica;
 
-public class UsuarioValidator {
+public class ValidacionUsuario {
     public static boolean cedulaValida(String cedula) {
         //TODO Implementar validacion de cedula
         return true;

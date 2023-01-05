@@ -48,6 +48,14 @@ public class CabezaGanadoCRUD implements iCRUD<CabezaGanado>{
             throw new Exception("Elemento no fue encontrado!");
         repCabezaGanado.delete(elemento);
     }
+    
+    public CabezaGanado eliminar(String id) throws Exception {
+        if (!contiene(id))
+            throw new Exception("Elemento no fue encontrado!");
+        CabezaGanado cabezaGanado = buscar(id);
+        repCabezaGanado.deleteById(id);
+        return cabezaGanado;
+    }
 
     @Override
     public CabezaGanado buscar(CabezaGanado elemento) throws Exception {

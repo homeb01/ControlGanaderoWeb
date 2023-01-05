@@ -32,15 +32,17 @@ public class ConfgSeguridad extends WebSecurityConfigurerAdapter {
         http.csrf().disable();
         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
         
+        /*
         http.authorizeRequests().antMatchers("/login/**","/usuarios/token/**").permitAll();
-        http.authorizeRequests().antMatchers(HttpMethod.POST, "/ganado/**").hasAnyAuthority("ADMIN");
-        http.authorizeRequests().antMatchers(HttpMethod.PUT, "/ganado/**/**").hasAnyAuthority("ADMIN");
+        http.authorizeRequests().antMatchers(HttpMethod.POST, "/ganado/").hasAnyAuthority("ADMIN");
+        http.authorizeRequests().antMatchers(HttpMethod.PUT, "/ganado//").hasAnyAuthority("ADMIN");
         http.authorizeRequests().antMatchers(HttpMethod.GET, "/ganado").hasAnyAuthority("ADMIN","USER");
         http.authorizeRequests().antMatchers(HttpMethod.GET, "/ganado/**").permitAll();
         
         http.authorizeRequests().antMatchers(HttpMethod.POST, "/usuarios/crear").hasAnyAuthority("ADMIN");
         
-        http.authorizeRequests().anyRequest().authenticated();
+        http.authorizeRequests().anyRequest().authenticated(); */
+        http.authorizeRequests().anyRequest().permitAll();
         http.addFilter(new FiltroAutenticacion(authenticationManagerBean()));
         http.addFilterBefore(new FiltroAutorizacion(), UsernamePasswordAuthenticationFilter.class);
     }

@@ -7,7 +7,7 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.Calendar;
 
-public class FechaValidator {
+public class ValidacionFecha {
 
     public static boolean fechaValida(String fecha) {
         try {
