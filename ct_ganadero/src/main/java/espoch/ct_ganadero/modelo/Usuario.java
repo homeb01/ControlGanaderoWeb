@@ -26,14 +26,18 @@ public class Usuario implements Serializable {
     
     @Column(name = "contrasena")
     String password;
+    
+    @Column(name = "rol")
+    String rol;
 
     public Usuario() {
     }
 
-    public Usuario(Persona persona, String user, String password) {
+    public Usuario(Persona persona, String user, String password, String rol) {
         this.persona = persona;
         this.user = user;
         this.password = password;
+        this.rol = rol;
     }
 
     public Persona getPersona() {
@@ -60,6 +64,14 @@ public class Usuario implements Serializable {
         this.password = password;
     }
 
+    public String getRol() {
+        return rol;
+    }
+
+    public void setRol(String rol) {
+        this.rol = rol;
+    }
+    
     @Override
     public int hashCode() {
         int hash = 3;

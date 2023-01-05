@@ -1,4 +1,4 @@
-package espoch.ct_ganadero.controladores;
+package espoch.ct_ganadero.peticiones;
 
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;

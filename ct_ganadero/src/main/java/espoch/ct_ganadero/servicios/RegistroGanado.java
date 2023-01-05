@@ -1,8 +1,8 @@
 package espoch.ct_ganadero.servicios;
 
-import espoch.ct_ganadero.controladores.PeticionGanadoAjeno;
-import espoch.ct_ganadero.controladores.PeticionGanadoComprado;
-import espoch.ct_ganadero.controladores.PeticionGanadoPropio;
+import espoch.ct_ganadero.peticiones.PeticionGanadoAjeno;
+import espoch.ct_ganadero.peticiones.PeticionGanadoComprado;
+import espoch.ct_ganadero.peticiones.PeticionGanadoPropio;
 import espoch.ct_ganadero.datos.AjenoCRUD;
 import espoch.ct_ganadero.datos.CabezaGanadoCRUD;
 import espoch.ct_ganadero.datos.CompradoCRUD;

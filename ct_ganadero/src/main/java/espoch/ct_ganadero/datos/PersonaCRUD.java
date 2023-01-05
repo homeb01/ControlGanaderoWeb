@@ -24,7 +24,12 @@ public class PersonaCRUD implements iCRUD<Persona> {
 
     @Override
     public boolean contiene(Persona elemento) {
-        Persona buscado = repositorio.findById(elemento.getCedulaRUC()).get();
+        Persona buscado = repositorio.findById(elemento.getCedulaRUC()).orElse(null);
+        return !(buscado == null);
+    }
+    
+    public boolean contiene(String id) {
+        Persona buscado = repositorio.findById(id).orElse(null);
         return !(buscado == null);
     }
 
@@ -48,5 +53,12 @@ public class PersonaCRUD implements iCRUD<Persona> {
             throw new Exception("Elemento no fue encontrado!");
         }
         return repositorio.findById(elemento.getCedulaRUC()).get();
+    }
+    
+    public Persona buscar(String id) throws Exception {
+        if (!contiene(id)) {
+            throw new Exception("Elemento no fue encontrado!");
+        }
+        return repositorio.findById(id).get();
     }
 }
