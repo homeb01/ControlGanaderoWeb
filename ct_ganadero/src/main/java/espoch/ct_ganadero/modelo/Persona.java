@@ -38,7 +38,7 @@ public class Persona implements Serializable {
     public Persona() {
     }
 
-    public Persona(String cedulaRUC, String nombre, Calendar fechaNacimiento, char sexo, String ciudadProcedencia, Usuario usuario) {
+    public Persona(String cedulaRUC, String nombre, Calendar fechaNacimiento, char sexo, String ciudadProcedencia) {
         this.cedulaRUC = cedulaRUC;
         this.nombre = nombre;
         this.fechaNacimiento = fechaNacimiento;

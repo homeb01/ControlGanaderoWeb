@@ -1,4 +1,4 @@
-package espoch.ct_ganadero.controladores;
+package espoch.ct_ganadero.peticiones;
 
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
@@ -9,13 +9,13 @@ import lombok.ToString;
 @AllArgsConstructor
 @EqualsAndHashCode
 @ToString
-public class PeticionGanadoComprado {
+public class PeticionGanadoPropio {
     private final String id;
     private final String id_raza;
     private final String nombre;
     private final char sexo;
-    private final String id_procedencia;
-    private final String edad;
-    private final String precio;
-    
+    private final String id_padre;
+    private final String id_madre;
+    private final String estado;
+    private final String fecha_nacimiento;
 }

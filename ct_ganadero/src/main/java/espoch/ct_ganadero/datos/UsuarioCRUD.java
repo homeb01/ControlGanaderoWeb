@@ -24,12 +24,12 @@ public class UsuarioCRUD implements iCRUD<Usuario> {
 
     @Override
     public boolean contiene(Usuario elemento) {
-        Usuario buscado = repositorio.findById(elemento.getUser()).get();
+        Usuario buscado = repositorio.findById(elemento.getUser()).orElse(null);
         return !(buscado == null);
     }
     
     public boolean contiene(String id) {
-        Usuario buscado = repositorio.findById(id).get();
+        Usuario buscado = repositorio.findById(id).orElse(null);
         return !(buscado == null);
     }
 

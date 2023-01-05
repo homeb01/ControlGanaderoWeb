@@ -30,12 +30,12 @@ public class AjenoCRUD implements iCRUD<Ajeno> {
 
     @Override
     public boolean contiene(Ajeno elemento) {
-        Ajeno elementoBuscado = repAjeno.findById(elemento.getId()).get();
+        Ajeno elementoBuscado = repAjeno.findById(elemento.getId()).orElse(null);
         return !(elementoBuscado == null);
     }
     
     public boolean contiene(String id) {
-        Ajeno elementoBuscado = repAjeno.findById(id).get();
+        Ajeno elementoBuscado = repAjeno.findById(id).orElse(null);
         return !(elementoBuscado == null);
     }
 

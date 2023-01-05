@@ -30,12 +30,12 @@ public class CompradoCRUD implements iCRUD<Comprado> {
 
     @Override
     public boolean contiene(Comprado elemento) {
-        Comprado cabezaGanadoCompradaBuscada = repComprado.findById(elemento.getId()).get();
+        Comprado cabezaGanadoCompradaBuscada = repComprado.findById(elemento.getId()).orElse(null);
         return !(cabezaGanadoCompradaBuscada == null);
     }
     
     public boolean contiene(String id) {
-        Comprado cabezaGanadoCompradaBuscada = repComprado.findById(id).get();
+        Comprado cabezaGanadoCompradaBuscada = repComprado.findById(id).orElse(null);
         return !(cabezaGanadoCompradaBuscada == null);
     }
 
