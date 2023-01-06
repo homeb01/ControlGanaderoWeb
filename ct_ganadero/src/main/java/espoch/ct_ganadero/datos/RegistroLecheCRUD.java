@@ -39,6 +39,11 @@ public class RegistroLecheCRUD implements iCRUD<RegistroLeche> {
         eliminar(elemento);
         guardar(nuevoElemento);
     }
+    
+    public void modificar(Calendar id, RegistroLeche nuevoElemento) throws Exception {
+        eliminar(id);
+        guardar(nuevoElemento);
+    }
 
     @Override
     public void eliminar(RegistroLeche elemento) throws Exception {
@@ -46,6 +51,13 @@ public class RegistroLecheCRUD implements iCRUD<RegistroLeche> {
             throw new Exception("Elemento no fue encontrado!");
         }
         repositorio.delete(elemento);
+    }
+    
+    public void eliminar(Calendar id) throws Exception {
+        if (!contiene(id)) {
+            throw new Exception("Elemento no fue encontrado!");
+        }
+        repositorio.deleteById(id);
     }
 
     @Override
@@ -61,5 +73,9 @@ public class RegistroLecheCRUD implements iCRUD<RegistroLeche> {
             throw new Exception("Elemento no fue encontrado!");
         }
         return repositorio.findById(id).get();
+    }
+    
+    public void actualizarTotalTerneros(float totalTerneros, float totalSobrante, String idRegistro) {
+        repositorio.actualizarTotalTerneros(totalTerneros, totalSobrante, idRegistro);
     }
 }

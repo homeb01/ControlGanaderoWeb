@@ -17,7 +17,7 @@ public class ValidacionFecha {
         }
         return true;
     }
-    
+
     public static Calendar StringACalendar(String fecha) {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         Calendar calendar = Calendar.getInstance();
@@ -28,5 +28,11 @@ public class ValidacionFecha {
         }
         return calendar;
     }
-    
+
+    public static String idAFormatoAceptado(String id) throws ParseException {
+        SimpleDateFormat formatoId = new SimpleDateFormat("yyyyMMdd");
+        SimpleDateFormat formatoAceptado = new SimpleDateFormat("yyyy-MM-dd");
+        return formatoAceptado.format(formatoId.parse(id));
+    }
+
 }

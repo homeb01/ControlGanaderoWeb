@@ -44,7 +44,6 @@ public class RegistroGanado {
         if (cabezaGanadoCrud.contiene(peticion.getId())) {
             throw new IllegalStateException("El Id ingresado ya se encuentra registrado");
         }
-
         if (!idValido) {
             throw new IllegalStateException("El Id ingresado no es valido");
         }

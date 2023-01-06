@@ -27,7 +27,12 @@ public class PrenezCRUD implements iCRUD<Prenez> {
 
     @Override
     public boolean contiene(Prenez elemento) {
-        Prenez buscado = repositorio.findById(elemento.getId()).get();
+        Prenez buscado = repositorio.findById(elemento.getId()).orElse(null);
+        return !(buscado == null);
+    }
+    
+    public boolean contiene(int id) {
+        Prenez buscado = repositorio.findById(id).orElse(null);
         return !(buscado == null);
     }
 
@@ -44,6 +49,15 @@ public class PrenezCRUD implements iCRUD<Prenez> {
         }
         repositorio.delete(elemento);
     }
+    
+    public Prenez eliminar(int id) throws Exception {
+        if (!contiene(id)) {
+            throw new Exception("Elemento no fue encontrado!");
+        }
+        Prenez prenez = buscar(id);
+        repositorio.deleteById(id);
+        return prenez;
+    }
 
     @Override
     public Prenez buscar(Prenez elemento) throws Exception {
@@ -51,5 +65,16 @@ public class PrenezCRUD implements iCRUD<Prenez> {
             throw new Exception("Elemento no fue encontrado!");
         }
         return repositorio.findById(elemento.getId()).get();
+    }
+    
+    public Prenez buscar(int id) throws Exception {
+        if (!contiene(id)) {
+            throw new Exception("Elemento no fue encontrado!");
+        }
+        return repositorio.findById(id).get();
+    }
+    
+    public void actualizarFechaYEstado(String fechaParto, String estado, int id) {
+        repositorio.actualizarFechaParto(fechaParto, estado, id);
     }
 }

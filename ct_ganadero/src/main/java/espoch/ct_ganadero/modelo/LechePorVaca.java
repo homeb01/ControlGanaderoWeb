@@ -34,12 +34,12 @@ public class LechePorVaca {
     String turno;
     
     @Column(name = "total")
-    int total;
+    float total;
 
     public LechePorVaca() {
     }
 
-    public LechePorVaca(RegistroLeche registro, Propio cabezaGanado, Usuario usuario, String turno, int total) {
+    public LechePorVaca(RegistroLeche registro, Propio cabezaGanado, Usuario usuario, String turno, float total) {
         this.registro = registro;
         this.cabezaGanado = cabezaGanado;
         this.usuario = usuario;
@@ -67,7 +67,7 @@ public class LechePorVaca {
         return turno;
     }
 
-    public int getTotal() {
+    public float getTotal() {
         return total;
     }
 
@@ -91,7 +91,7 @@ public class LechePorVaca {
         this.turno = turno;
     }
 
-    public void setTotal(int total) {
+    public void setTotal(float total) {
         this.total = total;
     }
 

@@ -35,18 +35,17 @@ public class Prenez implements Serializable {
     @Column(name = "fecha_parto")
     Calendar fechaParto;
     
-    @Temporal(TemporalType.DATE)
-    @Column(name = "fecha_fin_produccion")
-    Calendar fechaFinProduccion;
+    @Column(name = "estado")
+    String estado;
 
     public Prenez() {
     }
 
-    public Prenez(Propio cabezaGanado, Calendar fechaInseminacion, Calendar fechaParto, Calendar fechaFinProduccion) {
+    public Prenez(Propio cabezaGanado, Calendar fechaInseminacion, Calendar fechaParto, String estado) {
         this.cabezaGanado = cabezaGanado;
         this.fechaInseminacion = fechaInseminacion;
         this.fechaParto = fechaParto;
-        this.fechaFinProduccion = fechaFinProduccion;
+        this.estado = estado;
     }
 
     public Integer getId() {
@@ -65,10 +64,6 @@ public class Prenez implements Serializable {
         return fechaParto;
     }
 
-    public Calendar getFechaFinProduccion() {
-        return fechaFinProduccion;
-    }
-
     public void setCabezaGanado(Propio cabezaGanado) {
         this.cabezaGanado = cabezaGanado;
     }
@@ -81,10 +76,14 @@ public class Prenez implements Serializable {
         this.fechaParto = fechaParto;
     }
 
-    public void setFechaFinProduccion(Calendar fechaFinProduccion) {
-        this.fechaFinProduccion = fechaFinProduccion;
+    public String getEstado() {
+        return estado;
     }
 
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
+    
     @Override
     public int hashCode() {
         int hash = 7;

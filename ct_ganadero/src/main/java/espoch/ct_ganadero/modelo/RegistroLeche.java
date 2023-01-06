@@ -1,5 +1,6 @@
 package espoch.ct_ganadero.modelo;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -23,18 +24,19 @@ public class RegistroLeche implements Serializable {
     Calendar fechaRegistro;
     
     @Column(name = "total_terneros")
-    int totalTernero;
+    float totalTernero;
     
     @Column(name = "total_sobrante")
-    int totalSobrante;
+    float totalSobrante;
     
     @OneToMany(mappedBy = "registro")
+    @JsonIgnore
     List<LechePorVaca> registro;
 
     public RegistroLeche() {
     }
 
-    public RegistroLeche(Calendar fechaRegistro, int totalTernero, int totalSobrante) {
+    public RegistroLeche(Calendar fechaRegistro, float totalTernero, float totalSobrante) {
         this.fechaRegistro = fechaRegistro;
         this.totalTernero = totalTernero;
         this.totalSobrante = totalSobrante;
@@ -45,11 +47,11 @@ public class RegistroLeche implements Serializable {
         return fechaRegistro;
     }
 
-    public int getTotalTernero() {
+    public float getTotalTernero() {
         return totalTernero;
     }
 
-    public int getTotalSobrante() {
+    public float getTotalSobrante() {
         return totalSobrante;
     }
 
@@ -57,11 +59,11 @@ public class RegistroLeche implements Serializable {
         this.fechaRegistro = fechaRegistro;
     }
 
-    public void setTotalTernero(int totalTernero) {
+    public void setTotalTernero(float totalTernero) {
         this.totalTernero = totalTernero;
     }
 
-    public void setTotalSobrante(int totalSobrante) {
+    public void setTotalSobrante(float totalSobrante) {
         this.totalSobrante = totalSobrante;
     }
 

@@ -79,7 +79,7 @@ public class UsuariosControlador {
             usuario = usuarios.ver(id);
             return new ResponseEntity(usuario, headers, HttpStatus.OK);
         } catch (Exception e) {
-            return new ResponseEntity(e, headers, HttpStatus.NOT_FOUND);
+            return new ResponseEntity(e.getMessage(), headers, HttpStatus.NOT_FOUND);
         }
     }
 
@@ -92,7 +92,7 @@ public class UsuariosControlador {
             usuario = usuarios.eliminar(id);
             return new ResponseEntity(usuario, headers, HttpStatus.OK);
         } catch (Exception e) {
-            return new ResponseEntity(e, headers, HttpStatus.NOT_FOUND);
+            return new ResponseEntity(e.getMessage(), headers, HttpStatus.NOT_FOUND);
         }
     }
 

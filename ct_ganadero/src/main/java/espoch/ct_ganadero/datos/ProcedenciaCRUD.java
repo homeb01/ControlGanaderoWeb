@@ -24,12 +24,12 @@ public class ProcedenciaCRUD implements iCRUD<Procedencia> {
 
     @Override
     public boolean contiene(Procedencia elemento) {
-        Procedencia procedenciaBuscada = repProcedencia.findById(elemento.getId()).get();
+        Procedencia procedenciaBuscada = repProcedencia.findById(elemento.getId()).orElse(null);
         return !(procedenciaBuscada == null);
     }
     
     public boolean contiene(int id) {
-        Procedencia procedenciaBuscada = repProcedencia.findById(id).get();
+        Procedencia procedenciaBuscada = repProcedencia.findById(id).orElse(null);
         return !(procedenciaBuscada == null);
     }
 
@@ -38,12 +38,25 @@ public class ProcedenciaCRUD implements iCRUD<Procedencia> {
         eliminar(elemento);
         guardar(nuevoElemento);
     }
+    
+    public void modificar(int id, Procedencia nuevoElemento) throws Exception {
+        eliminar(id);
+        guardar(nuevoElemento);
+    }
 
     @Override
     public void eliminar(Procedencia elemento) throws Exception {
         if (!contiene(elemento))
             throw new Exception("Elemento no fue encontrado!");
         repProcedencia.delete(elemento);
+    }
+    
+    public Procedencia eliminar(int id) throws Exception {
+        if (!contiene(id))
+            throw new Exception("Elemento no fue encontrado!");
+        Procedencia procedencia = buscar(id);
+        repProcedencia.deleteById(id);
+        return procedencia;
     }
 
     @Override

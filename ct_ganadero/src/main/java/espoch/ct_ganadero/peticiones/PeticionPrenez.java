@@ -9,9 +9,10 @@ import lombok.ToString;
 @AllArgsConstructor
 @EqualsAndHashCode
 @ToString
-public class PeticionLechePorVaca {
+public class PeticionPrenez {
+    private final int id;
     private final String idCabezaGanado;
-    private final String idUsuario;
-    private final String turno;
-    private final String total;
+    private final String estado;
+    private final String fechaInseminacion;
+    private final String fechaParto;
 }

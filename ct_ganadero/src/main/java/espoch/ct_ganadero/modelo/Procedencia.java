@@ -4,10 +4,11 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -16,6 +17,7 @@ import javax.persistence.Table;
 @Table(name = "procedencia")
 public class Procedencia implements Serializable {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_procedencia")
     private Integer id;
     
@@ -30,10 +32,8 @@ public class Procedencia implements Serializable {
         this.cabezasAjenas = new ArrayList<>();
     }
 
-    public Procedencia(Integer id, List<Ajeno> cabezasAjenas, String procedencia) {
+    public Procedencia(String procedencia) {
         this.cabezasAjenas = new ArrayList<>();
-        this.id = id;
-        this.cabezasAjenas = cabezasAjenas;
         this.procedencia = procedencia;
     }
     

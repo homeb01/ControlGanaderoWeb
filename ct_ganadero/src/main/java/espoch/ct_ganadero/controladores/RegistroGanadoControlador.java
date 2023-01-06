@@ -125,7 +125,7 @@ public class RegistroGanadoControlador {
             cabezaGanado = registroGanado.ver(id);
             return new ResponseEntity(cabezaGanado, headers, HttpStatus.OK);
         } catch (Exception e) {
-            return new ResponseEntity(e, headers, HttpStatus.NOT_FOUND);
+            return new ResponseEntity(e.getMessage(), headers, HttpStatus.NOT_FOUND);
         }
     }
 

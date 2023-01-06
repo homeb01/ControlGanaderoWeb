@@ -30,10 +30,20 @@ public class LechePorVacaCRUD implements iCRUD<LechePorVaca> {
         LechePorVaca buscado = repositorio.findById(elemento.getId()).orElse(null);
         return !(buscado == null);
     }
+    
+    public boolean contiene(int id) {
+        LechePorVaca buscado = repositorio.findById(id).orElse(null);
+        return !(buscado == null);
+    }
 
     @Override
     public void modificar(LechePorVaca elemento, LechePorVaca nuevoElemento) throws Exception {
         eliminar(elemento);
+        guardar(nuevoElemento);
+    }
+    
+    public void modificar(int id, LechePorVaca nuevoElemento) throws Exception {
+        eliminar(id);
         guardar(nuevoElemento);
     }
 
@@ -44,6 +54,15 @@ public class LechePorVacaCRUD implements iCRUD<LechePorVaca> {
         }
         repositorio.delete(elemento);
     }
+    
+    public LechePorVaca eliminar(int id) throws Exception {
+        if (!contiene(id)) {
+            throw new Exception("Elemento no fue encontrado!");
+        }
+        LechePorVaca registro = buscar(id);
+        repositorio.deleteById(id);
+        return registro;
+    }
 
     @Override
     public LechePorVaca buscar(LechePorVaca elemento) throws Exception {
@@ -53,8 +72,27 @@ public class LechePorVacaCRUD implements iCRUD<LechePorVaca> {
         return repositorio.findById(elemento.getId()).get();
     }
     
-    public boolean existeRegistro(String idCabezaGanado, String idRegistro) throws Exception {
-        LechePorVaca registro = repositorio.findByVacaAndRegistro(idCabezaGanado, idRegistro);
+    public LechePorVaca buscar(int id) throws Exception {
+        if (!contiene(id)) {
+            throw new Exception("Elemento no fue encontrado!");
+        }
+        return repositorio.findById(id).get();
+    }
+    
+    public boolean existeRegistro(String idCabezaGanado, String idRegistro, String turno) throws Exception {
+        LechePorVaca registro = repositorio.findByVacaAndRegistro(idCabezaGanado, idRegistro, turno);
         return registro != null;
+    }
+    
+    public List<LechePorVaca> listar(String idRegistro) {
+        return repositorio.listByRegistro(idRegistro);
+    }
+    
+    public String totalManana(String idRegistro) {
+        return repositorio.sumarTotalManana(idRegistro);
+    }
+    
+    public String totalTarde(String idRegistro) {
+        return repositorio.sumarTotalTarde(idRegistro);
     }
 }
