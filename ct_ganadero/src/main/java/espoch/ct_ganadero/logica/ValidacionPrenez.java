@@ -7,8 +7,7 @@ public class ValidacionPrenez {
     public static String ABORTO = "Aborto";
 
     public static boolean estadoValido(String estado) {
-        // TODO implementar validacion de estados
-        return true;
+        return estado.equals(PRENADA) || estado.equals(PRODUCCION) || estado.equals(ABORTO);
     }
     
 }

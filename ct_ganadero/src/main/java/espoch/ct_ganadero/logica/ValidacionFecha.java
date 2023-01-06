@@ -35,4 +35,11 @@ public class ValidacionFecha {
         return formatoAceptado.format(formatoId.parse(id));
     }
 
+    public static boolean fechaMenorIgualA(Calendar a, Calendar b) {
+        return a.compareTo(b) <= 0;
+    }
+
+    public static Calendar fechaActual() {
+        return Calendar.getInstance();
+    }
 }

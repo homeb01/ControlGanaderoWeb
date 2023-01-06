@@ -5,18 +5,21 @@ import java.time.LocalDateTime;
 public class ValidacionRegistroLeche {
 
     public static boolean turnoValido(String turno) {
-        // TODO Implementar validacion de turnos
-        return true;
+        return turno.equals("M") || turno.equals("T");
     }
     
     public static boolean totalValido(String total) {
-        // TODO Implementar validacion de totales
-        return true;
+        try {
+            float totalF = Float.parseFloat(total);
+            return totalF > 0 && totalF < 100;
+        } catch (Exception e) {
+            return false;
+        }
     }
 
     public static String obtenerTurno(LocalDateTime currentDateTime) {
-        // TODO Implementar turno x tiempo
-        return "M";
+        int hora = currentDateTime.getHour();
+        return hora >= 6 && hora < 12 ? "M" : "T"; 
     }
     
 }

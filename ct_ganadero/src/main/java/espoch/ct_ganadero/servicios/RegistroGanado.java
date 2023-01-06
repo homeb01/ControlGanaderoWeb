@@ -10,7 +10,6 @@ import espoch.ct_ganadero.datos.ProcedenciaCRUD;
 import espoch.ct_ganadero.datos.PropioCRUD;
 import espoch.ct_ganadero.datos.RazaCRUD;
 import espoch.ct_ganadero.logica.ValidacionCabezaGanado;
-import espoch.ct_ganadero.logica.ValidacionEdad;
 import espoch.ct_ganadero.logica.ValidacionFecha;
 import espoch.ct_ganadero.modelo.Ajeno;
 import espoch.ct_ganadero.modelo.CabezaGanado;
@@ -36,17 +35,37 @@ public class RegistroGanado {
 
     public Propio registrar(PeticionGanadoPropio peticion) throws IllegalStateException, Exception {
         boolean idValido = ValidacionCabezaGanado.idValido(peticion.getId());
+        boolean idPadreValido = ValidacionCabezaGanado.idValido(peticion.getId_padre());
+        boolean idMadreValido = ValidacionCabezaGanado.idValido(peticion.getId_madre());
         boolean nombreValido = ValidacionCabezaGanado.nombreValido(peticion.getNombre());
         boolean sexoValido = ValidacionCabezaGanado.sexoValido(peticion.getSexo());
         boolean estadoValido = ValidacionCabezaGanado.estadoValido(peticion.getEstado());
         boolean fechaNacValida = ValidacionFecha.fechaValida(peticion.getFecha_nacimiento());
 
-        if (cabezaGanadoCrud.contiene(peticion.getId())) {
-            throw new IllegalStateException("El Id ingresado ya se encuentra registrado");
-        }
         if (!idValido) {
             throw new IllegalStateException("El Id ingresado no es valido");
         }
+        if (cabezaGanadoCrud.contiene(peticion.getId())) {
+            throw new IllegalStateException("El Id ingresado ya se encuentra registrado");
+        }
+        if (!idMadreValido) {
+            throw new IllegalStateException("El Id de la madre ingresado no es valido");
+        }
+        if (!idPadreValido) {
+            throw new IllegalStateException("El Id del padre ingresado no es valido");
+        }
+        
+        CabezaGanado padre = cabezaGanadoCrud.buscar(peticion.getId_padre());
+        CabezaGanado madre = cabezaGanadoCrud.buscar(peticion.getId_madre());
+        
+        if (!ValidacionCabezaGanado.esMacho(padre.getSexo()))
+            throw new IllegalStateException("La cabeza de ganado seleccionada como padre no es macho");
+        if (ValidacionCabezaGanado.esMacho(madre.getSexo()))
+            throw new IllegalStateException("La cabeza de ganado seleccionada como madre no es hembra");
+        
+        if (!ValidacionFecha.fechaMenorIgualA(ValidacionFecha.StringACalendar(peticion.getFecha_nacimiento()), ValidacionFecha.fechaActual()))
+            throw new IllegalStateException("La fecha ingresada no puede ser mayor a la fecha actual");
+        
         if (!razaCrud.contiene(peticion.getId_raza())) {
             throw new IllegalStateException("No se ha encontrado la raza ingresada");
         }
@@ -88,7 +107,7 @@ public class RegistroGanado {
         boolean idValido = ValidacionCabezaGanado.idValido(peticion.getId());
         boolean nombreValido = ValidacionCabezaGanado.nombreValido(peticion.getNombre());
         boolean sexoValido = ValidacionCabezaGanado.sexoValido(peticion.getSexo());
-        boolean edadValida = ValidacionEdad.edadValida(Integer.parseInt(peticion.getEdad()));
+        boolean edadValida = ValidacionCabezaGanado.edadValida(Integer.parseInt(peticion.getEdad()));
 
         if (cabezaGanadoCrud.contiene(peticion.getId())) {
             throw new IllegalStateException("El Id ingresado ya se encuentra registrado");
@@ -129,7 +148,7 @@ public class RegistroGanado {
         boolean idValido = ValidacionCabezaGanado.idValido(peticion.getId());
         boolean nombreValido = ValidacionCabezaGanado.nombreValido(peticion.getNombre());
         boolean sexoValido = ValidacionCabezaGanado.sexoValido(peticion.getSexo());
-        boolean edadValida = ValidacionEdad.edadValida(Integer.parseInt(peticion.getEdad()));
+        boolean edadValida = ValidacionCabezaGanado.edadValida(Integer.parseInt(peticion.getEdad()));
         boolean precioValido = Float.parseFloat(peticion.getPrecio()) >= 0;
 
         if (cabezaGanadoCrud.contiene(peticion.getId())) {
@@ -230,7 +249,7 @@ public class RegistroGanado {
         boolean idValido = ValidacionCabezaGanado.idValido(peticion.getId());
         boolean nombreValido = ValidacionCabezaGanado.nombreValido(peticion.getNombre());
         boolean sexoValido = ValidacionCabezaGanado.sexoValido(peticion.getSexo());
-        boolean edadValida = ValidacionEdad.edadValida(Integer.parseInt(peticion.getEdad()));
+        boolean edadValida = ValidacionCabezaGanado.edadValida(Integer.parseInt(peticion.getEdad()));
 
         if (!cabezaGanadoCrud.contiene(id)) {
             throw new IllegalStateException("No se ha encontrado la cabeza de ganado a modificar");
@@ -274,7 +293,7 @@ public class RegistroGanado {
         boolean idValido = ValidacionCabezaGanado.idValido(peticion.getId());
         boolean nombreValido = ValidacionCabezaGanado.nombreValido(peticion.getNombre());
         boolean sexoValido = ValidacionCabezaGanado.sexoValido(peticion.getSexo());
-        boolean edadValida = ValidacionEdad.edadValida(Integer.parseInt(peticion.getEdad()));
+        boolean edadValida = ValidacionCabezaGanado.edadValida(Integer.parseInt(peticion.getEdad()));
         boolean precioValido = Float.parseFloat(peticion.getPrecio()) >= 0;
 
         if (!cabezaGanadoCrud.contiene(id)) {
