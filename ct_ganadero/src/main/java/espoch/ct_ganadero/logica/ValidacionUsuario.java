@@ -1,7 +1,5 @@
 package espoch.ct_ganadero.logica;
 
-import java.util.regex.Pattern;
-
 public class ValidacionUsuario {
     public static boolean cedulaValida(String cedula) {
         //TODO Implementar validacion de cedula
@@ -24,11 +22,11 @@ public class ValidacionUsuario {
     }
     
     public static boolean usernameValido(String usr) {
-        return Pattern.compile("[A-Z][a-z][a-z][a-z][a-z][a-z][a-z][a-z][a-z][a-z][0-9][0-9][0-9]").matcher(usr).matches();
+        return !usr.isBlank();
     }
     
     public static boolean passwValido(String passw) {
-        return Pattern.compile("[A-Z][a-z][a-z][a-z][a-z][a-z][a-z][a-z][a-z][a-z][0-9][0-9][0-9]").matcher(passw).matches();
+        return !passw.isBlank();
     }
     
     public static boolean rolValido(String rol) {

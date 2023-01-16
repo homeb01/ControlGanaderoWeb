@@ -6,7 +6,7 @@ import java.util.regex.Pattern;
 public class ValidacionCabezaGanado {
 
     public static boolean idValido(String id) {
-        return Pattern.compile("[A-Z][0-9][0-9][0-9]").matcher(id).matches();
+        return !id.isBlank();
     }
 
     public static boolean sexoValido(char sexo) {

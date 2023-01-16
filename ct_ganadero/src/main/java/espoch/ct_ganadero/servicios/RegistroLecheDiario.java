@@ -37,7 +37,7 @@ public class RegistroLecheDiario {
 
         String turno = ValidacionRegistroLeche.obtenerTurno(currentDateTime);
 
-        boolean idCabezaGanadoValido = ValidacionCabezaGanado.idValido(peticion.getIdCabezaGanado());
+        boolean idCabezaGanadoValido = ValidacionCabezaGanado.idValido(peticion.getIdCabezaGanado().toUpperCase());
         boolean idUsuarioValido = ValidacionUsuario.usernameValido(peticion.getIdUsuario());
         boolean totalValido = ValidacionRegistroLeche.totalValido(peticion.getTotal());
 
@@ -45,7 +45,7 @@ public class RegistroLecheDiario {
             throw new IllegalStateException("La cabeza de ganado ingresada no es valida");
         }
 
-        if (lecheXVacaCrud.existeRegistro(peticion.getIdCabezaGanado(), idRegistro, turno)) {
+        if (lecheXVacaCrud.existeRegistro(peticion.getIdCabezaGanado().toUpperCase(), idRegistro, turno)) {
             throw new IllegalStateException("Ya existe un registro para esta vaca");
         }
 
@@ -56,7 +56,7 @@ public class RegistroLecheDiario {
                     0f));
         }
 
-        if (!cabezaGanadoCrud.contiene(peticion.getIdCabezaGanado())) {
+        if (!cabezaGanadoCrud.contiene(peticion.getIdCabezaGanado().toUpperCase())) {
             throw new IllegalStateException("No se ha encontrado la cabeza de ganado ingresada");
         }
         if (!idUsuarioValido) {
@@ -74,7 +74,7 @@ public class RegistroLecheDiario {
 
         LechePorVaca lechePorVaca = new LechePorVaca(
                 registroLeche,
-                cabezaGanadoCrud.buscar(peticion.getIdCabezaGanado()),
+                cabezaGanadoCrud.buscar(peticion.getIdCabezaGanado().toUpperCase()),
                 usuarioCrud.buscar(peticion.getIdUsuario()),
                 turno,
                 Float.parseFloat(peticion.getTotal())
@@ -89,7 +89,7 @@ public class RegistroLecheDiario {
         DateTimeFormatter customFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         String idRegistro = currentDateTime.format(customFormat);
 
-        boolean idCabezaGanadoValido = ValidacionCabezaGanado.idValido(peticion.getIdCabezaGanado());
+        boolean idCabezaGanadoValido = ValidacionCabezaGanado.idValido(peticion.getIdCabezaGanado().toUpperCase());
         boolean totalValido = ValidacionRegistroLeche.totalValido(peticion.getTotal());
         boolean turnoValido = ValidacionRegistroLeche.turnoValido(peticion.getTurno());
 
@@ -108,7 +108,7 @@ public class RegistroLecheDiario {
             throw new IllegalStateException("El turno ingresado no es valido");
         }
 
-        if (!cabezaGanadoCrud.contiene(peticion.getIdCabezaGanado())) {
+        if (!cabezaGanadoCrud.contiene(peticion.getIdCabezaGanado().toUpperCase())) {
             throw new IllegalStateException("No se ha encontrado la cabeza de ganado ingresada");
         }
 
@@ -116,8 +116,8 @@ public class RegistroLecheDiario {
             throw new IllegalStateException("El total ingresado no es valido");
         }
 
-        if (lecheXVacaCrud.existeRegistro(peticion.getIdCabezaGanado(), idRegistro, peticion.getTurno())) {
-            if (!registroVaca.getCabezaGanado().getId().equals(peticion.getIdCabezaGanado())
+        if (lecheXVacaCrud.existeRegistro(peticion.getIdCabezaGanado().toUpperCase(), idRegistro, peticion.getTurno())) {
+            if (!registroVaca.getCabezaGanado().getId().equals(peticion.getIdCabezaGanado().toUpperCase())
                     || !registroVaca.getTurno().equals(peticion.getTurno())) {
                 throw new IllegalStateException("Ya existe un registro para esta vaca");
             }
@@ -128,7 +128,7 @@ public class RegistroLecheDiario {
 
         LechePorVaca lechePorVaca = new LechePorVaca(
                 registroLeche,
-                cabezaGanadoCrud.buscar(peticion.getIdCabezaGanado()),
+                cabezaGanadoCrud.buscar(peticion.getIdCabezaGanado().toUpperCase()),
                 registroVaca.getUsuario(),
                 peticion.getTurno(),
                 Float.parseFloat(peticion.getTotal())
