@@ -77,4 +77,9 @@ public class PrenezCRUD implements iCRUD<Prenez> {
     public void actualizarFechaYEstado(String fechaParto, String estado, int id) {
         repositorio.actualizarFechaParto(fechaParto, estado, id);
     }
+    
+    public boolean estaPrenada(int idVaca) {
+        int ct = repositorio.ctProcesosPrenez(idVaca);
+        return ct != 0;
+    }
 }

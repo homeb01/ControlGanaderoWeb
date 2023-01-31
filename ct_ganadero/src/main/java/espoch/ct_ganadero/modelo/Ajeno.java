@@ -27,8 +27,14 @@ public class Ajeno extends CabezaGanado {
         this.edad = edad;
     }
 
-    public Ajeno(Procedencia procedencia, int edad, String id, Raza raza, String nombre, char sexo) {
-        super(id, raza, nombre, sexo);
+    public Ajeno(Procedencia procedencia, int edad, Raza raza, String nombre, char sexo, String tipo) {
+        super(raza, nombre, sexo, tipo);
+        this.procedencia = procedencia;
+        this.edad = edad;
+    }
+    
+    public Ajeno(Procedencia procedencia, int edad, Raza raza, String nombre, char sexo) {
+        super(raza, nombre, sexo, "AJENO");
         this.procedencia = procedencia;
         this.edad = edad;
     }
@@ -42,7 +48,7 @@ public class Ajeno extends CabezaGanado {
     }
 
     @Override
-    public String getId() {
+    public int getId() {
         return id;
     }
 
@@ -70,7 +76,7 @@ public class Ajeno extends CabezaGanado {
     }
 
     @Override
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 

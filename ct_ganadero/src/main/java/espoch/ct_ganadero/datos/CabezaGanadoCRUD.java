@@ -31,7 +31,7 @@ public class CabezaGanadoCRUD implements iCRUD<CabezaGanado>{
         return !(cabezaGanadoCompradaBuscada == null);
     }
     
-    public boolean contiene(String id) {
+    public boolean contiene(int id) {
         CabezaGanado cabezaGanadoCompradaBuscada = repCabezaGanado.findById(id).orElse(null);
         return !(cabezaGanadoCompradaBuscada == null);
     }
@@ -49,7 +49,7 @@ public class CabezaGanadoCRUD implements iCRUD<CabezaGanado>{
         repCabezaGanado.delete(elemento);
     }
     
-    public CabezaGanado eliminar(String id) throws Exception {
+    public CabezaGanado eliminar(int id) throws Exception {
         if (!contiene(id))
             throw new Exception("Elemento no fue encontrado!");
         CabezaGanado cabezaGanado = buscar(id);
@@ -64,7 +64,7 @@ public class CabezaGanadoCRUD implements iCRUD<CabezaGanado>{
         return repCabezaGanado.findById(elemento.getId()).get();
     }
     
-    public CabezaGanado buscar(String id) throws Exception {
+    public CabezaGanado buscar(int id) throws Exception {
         if (!contiene(id))
             throw new Exception("Elemento no fue encontrado!");
         return repCabezaGanado.findById(id).get();

@@ -26,13 +26,13 @@ public class RegistroPrenez {
         
         if (!idGanadoValida)
             throw new IllegalStateException("El Id de ganado ingresado no es valido");
-        if (!propioCrud.contiene(peticion.getIdCabezaGanado()))
+        if (!propioCrud.contiene(Integer.parseInt(peticion.getIdCabezaGanado())))
             throw new IllegalStateException("No se ha encontrado la cabeza de ganado especificada");
         if (!fechaInseValida)
             throw new IllegalStateException("La fecha de inseminacion no es valida");
         
         Prenez prenez = new Prenez(
-                propioCrud.buscar(peticion.getIdCabezaGanado()), 
+                propioCrud.buscar(Integer.parseInt(peticion.getIdCabezaGanado())), 
                 ValidacionFecha.StringACalendar(peticion.getFechaInseminacion()), 
                 null, 
                 ValidacionPrenez.PRENADA
@@ -76,5 +76,9 @@ public class RegistroPrenez {
     
     public Prenez ver(int id) throws Exception {
         return prenezCrud.buscar(id);
+    }
+    
+    public boolean estaPrenada(int id) {
+        return prenezCrud.estaPrenada(id);
     }
 }

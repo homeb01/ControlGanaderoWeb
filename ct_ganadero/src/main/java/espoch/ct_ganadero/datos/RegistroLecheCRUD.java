@@ -15,7 +15,7 @@ public class RegistroLecheCRUD implements iCRUD<RegistroLeche> {
 
     @Override
     public List<RegistroLeche> listar() {
-        return (List<RegistroLeche>) repositorio.findAll();
+        return (List<RegistroLeche>) repositorio.findAllByOrderByFechaRegistroDesc();
     }
 
     @Override

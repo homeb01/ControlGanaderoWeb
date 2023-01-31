@@ -18,16 +18,11 @@ public class Propio extends CabezaGanado {
     
     @ManyToOne()
     @JoinColumn(name = "id_padre")
-    @JsonIgnore
     CabezaGanado padre;
     
     @ManyToOne()
-    @JsonIgnore
     @JoinColumn(name = "id_madre")
     CabezaGanado madre;
-    
-    @Column(name = "estado")
-    String estado;
     
     @Temporal(TemporalType.DATE)
     @Column(name = "fecha_nacimiento")
@@ -40,11 +35,10 @@ public class Propio extends CabezaGanado {
     public Propio() {
     }
 
-    public Propio(CabezaGanado padre, CabezaGanado madre, String estado, Calendar fechaNacimiento, String id, Raza raza, String nombre, char sexo) {
-        super(id, raza, nombre, sexo);
+    public Propio(CabezaGanado padre, CabezaGanado madre, Calendar fechaNacimiento, Raza raza, String nombre, char sexo) {
+        super(raza, nombre, sexo, "PROPIO");
         this.padre = padre;
         this.madre = madre;
-        this.estado = estado;
         this.fechaNacimiento = fechaNacimiento;
     }
 
@@ -65,7 +59,7 @@ public class Propio extends CabezaGanado {
     }
 
     @Override
-    public String getId() {
+    public int getId() {
         return id;
     }
 
@@ -92,6 +86,7 @@ public class Propio extends CabezaGanado {
         this.madre = madre;
     }
 
+    @Override
     public void setEstado(String estado) {
         this.estado = estado;
     }
@@ -109,7 +104,7 @@ public class Propio extends CabezaGanado {
     }
     
     @Override
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 

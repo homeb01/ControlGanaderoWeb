@@ -1,5 +1,6 @@
 package espoch.ct_ganadero.modelo;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
 import java.util.Calendar;
 import java.util.Objects;
@@ -27,6 +28,7 @@ public class Persona implements Serializable {
     Calendar fechaNacimiento;
     
     @OneToOne(mappedBy = "persona")
+    @JsonIgnore
     Usuario usuario;
     
     @Column(name = "sexo")
@@ -44,7 +46,6 @@ public class Persona implements Serializable {
         this.fechaNacimiento = fechaNacimiento;
         this.sexo = sexo;
         this.ciudadProcedencia = ciudadProcedencia;
-        this.usuario = usuario;
     }
 
     public String getCedulaRUC() {

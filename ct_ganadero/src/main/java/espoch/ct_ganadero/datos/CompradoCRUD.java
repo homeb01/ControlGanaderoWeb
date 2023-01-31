@@ -3,7 +3,7 @@ package espoch.ct_ganadero.datos;
 import espoch.ct_ganadero.modelo.Comprado;
 import espoch.ct_ganadero.modelo.Procedencia;
 import espoch.ct_ganadero.modelo.Raza;
-import espoch.ct_ganadero.repositorios.RepositorioCabezaGanado;
+import espoch.ct_ganadero.repositorios.RepositorioComprado;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 public class CompradoCRUD implements iCRUD<Comprado> {
     
     @Autowired
-    private RepositorioCabezaGanado<Comprado> repComprado;
+    private RepositorioComprado repComprado;
 
     @Override
     public List<Comprado> listar() {
@@ -34,7 +34,7 @@ public class CompradoCRUD implements iCRUD<Comprado> {
         return !(cabezaGanadoCompradaBuscada == null);
     }
     
-    public boolean contiene(String id) {
+    public boolean contiene(int id) {
         Comprado cabezaGanadoCompradaBuscada = repComprado.findById(id).orElse(null);
         return !(cabezaGanadoCompradaBuscada == null);
     }
@@ -59,7 +59,7 @@ public class CompradoCRUD implements iCRUD<Comprado> {
         return repComprado.findById(elemento.getId()).get();
     }
     
-    public Comprado buscar(String id) throws Exception {
+    public Comprado buscar(int id) throws Exception {
         if (!contiene(id))
             throw new Exception("Elemento no fue encontrado!");
         return repComprado.findById(id).get();

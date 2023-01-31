@@ -10,7 +10,7 @@ import org.springframework.stereotype.Repository;
 public interface RepositorioLechePorVaca extends JpaRepository<LechePorVaca, Integer> {
     
     @Query(value = "SELECT * FROM leche_por_vaca WHERE id_cabeza_ganado = ?1 and id_registro = TO_DATE(?2,\'YYYY-MM-DD\') and turno = ?3", nativeQuery = true)
-    LechePorVaca findByVacaAndRegistro(String idCabezaGanado, String idRegistro, String turno);
+    LechePorVaca findByVacaAndRegistro(int idCabezaGanado, String idRegistro, String turno);
     
     @Query(value = "SELECT * FROM leche_por_vaca WHERE id_registro = TO_DATE(?1,\'YYYY-MM-DD\') ", nativeQuery = true)
     List<LechePorVaca> listByRegistro(String idRegistro);

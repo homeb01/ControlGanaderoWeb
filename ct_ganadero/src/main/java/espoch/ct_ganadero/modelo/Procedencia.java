@@ -17,9 +17,8 @@ import javax.persistence.Table;
 @Table(name = "procedencia")
 public class Procedencia implements Serializable {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_procedencia")
-    private Integer id;
+    private String id;
     
     @OneToMany(mappedBy = "procedencia", fetch = FetchType.EAGER)
     @JsonIgnore
@@ -35,15 +34,16 @@ public class Procedencia implements Serializable {
     public Procedencia(String procedencia) {
         this.cabezasAjenas = new ArrayList<>();
         this.procedencia = procedencia;
+        this.id = procedencia;
     }
     
-    public Procedencia(Integer id, String procedencia) {
+    public Procedencia(String id, String procedencia) {
         this.cabezasAjenas = new ArrayList<>();
         this.id = id;
         this.procedencia = procedencia;
     }
 
-    public Integer getId() {
+    public String getId() {
         return id;
     }
 
@@ -55,7 +55,7 @@ public class Procedencia implements Serializable {
         return procedencia;
     }
 
-    public void setId(Integer id) {
+    public void setId(String id) {
         this.id = id;
     }
 

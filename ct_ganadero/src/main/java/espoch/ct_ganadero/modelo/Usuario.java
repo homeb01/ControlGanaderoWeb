@@ -21,7 +21,6 @@ public class Usuario implements Serializable {
     
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "cedula_ruc")
-    @JsonIgnore
     Persona persona;
     
     @Column(name = "contrasena")

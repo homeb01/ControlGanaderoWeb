@@ -3,6 +3,8 @@ package espoch.ct_ganadero.modelo;
 import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
@@ -16,7 +18,8 @@ import javax.persistence.Table;
 public class CabezaGanado implements Serializable {
     @Id
     @Column(name = "id_cabeza_ganado")
-    String id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    int id;
     
     @ManyToOne
     @JoinColumn(name = "id_raza")
@@ -27,18 +30,25 @@ public class CabezaGanado implements Serializable {
     
     @Column(name = "sexo")
     char sexo;
+    
+    @Column(name = "tipo")
+    String tipo;
+    
+    @Column(name = "estado")
+    String estado;
 
     public CabezaGanado() {
     }
 
-    public CabezaGanado(String id, Raza raza, String nombre, char sexo) {
-        this.id = id;
+    public CabezaGanado(Raza raza, String nombre, char sexo, String tipo) {
         this.raza = raza;
         this.nombre = nombre;
         this.sexo = sexo;
+        this.tipo = tipo;
+        this.estado = "VIVA";
     }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
@@ -53,8 +63,20 @@ public class CabezaGanado implements Serializable {
     public char getSexo() {
         return sexo;
     }
+    
+    public String getTipo() {
+        return tipo;
+    }
+    
+    public String getEstado() {
+        return estado;
+    }
+    
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 

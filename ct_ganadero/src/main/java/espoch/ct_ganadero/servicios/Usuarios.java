@@ -53,20 +53,33 @@ public class Usuarios implements UserDetailsService {
         boolean contrasenaValida = ValidacionUsuario.passwValido(peticion.getPassword());
         boolean rolValido = ValidacionUsuario.rolValido(peticion.getRol());
         
-        if (!usuarioValido || usuarioCrud.contiene(peticion.getUser()))
+        if (!usuarioValido)
+            throw new IllegalStateException("El usuario ingresado no es válido");
+        
+        if (usuarioCrud.contiene(peticion.getUser()))
             throw new IllegalStateException("El usuario ingresado ya se encuentra registrado");
+        
         if (!contrasenaValida)
             throw new IllegalStateException("La contrasena ingresada no es valida");
-        if (!cedulaValida || personaCrud.contiene(peticion.getCedulaRuc()))
-            throw new IllegalStateException("Ya se ha registrado este usuario");
+        
+        if (!cedulaValida)
+            throw new IllegalStateException("La cédula ingresada no es válida");
+        
+        if (personaCrud.contiene(peticion.getCedulaRuc()))
+            throw new IllegalStateException("La persona ingresada ya está registrada y cuenta con un usuario");
+        
         if (!nombreValido)
             throw new IllegalStateException("El nombre ingresado no es valido");
+        
         if (!fechaNacimientoValida)
             throw new IllegalStateException("La fecha de nacimiento ingresada no es valida");
+        
         if (!sexoValido)
             throw new IllegalStateException("El sexo ingresado no es valido");
+        
         if (!ciudadValida)
             throw new IllegalStateException("La ciudad ingresada no es valida");
+        
         if (!rolValido)
             throw new IllegalStateException("El rol ingresado no es valido");
         

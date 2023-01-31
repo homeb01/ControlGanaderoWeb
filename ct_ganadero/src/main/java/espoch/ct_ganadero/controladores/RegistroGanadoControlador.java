@@ -7,6 +7,7 @@ import espoch.ct_ganadero.modelo.Ajeno;
 import espoch.ct_ganadero.modelo.CabezaGanado;
 import espoch.ct_ganadero.modelo.Comprado;
 import espoch.ct_ganadero.modelo.Propio;
+import espoch.ct_ganadero.modelo.Raza;
 import espoch.ct_ganadero.servicios.RegistroGanado;
 import java.util.List;
 import lombok.AllArgsConstructor;
@@ -14,6 +15,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -24,6 +26,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+@CrossOrigin
 @RequestMapping("/")
 @AllArgsConstructor
 public class RegistroGanadoControlador {
@@ -110,7 +113,7 @@ public class RegistroGanadoControlador {
 
     @GetMapping("/ganado")
     public ResponseEntity listar() {
-        List<Propio> ganadoPropio = registroGanado.listar();
+        List<CabezaGanado> ganadoPropio = registroGanado.listar();
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
         return new ResponseEntity(ganadoPropio, headers, HttpStatus.OK);
@@ -140,5 +143,13 @@ public class RegistroGanadoControlador {
         } catch (Exception e) {
             return new ResponseEntity(e, headers, HttpStatus.NOT_FOUND);
         }
+    }
+    
+    @GetMapping("/razas")
+    public ResponseEntity listarRazas() {
+        List<Raza> razas = registroGanado.listarRazas();
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        return new ResponseEntity(razas, headers, HttpStatus.OK);
     }
 }

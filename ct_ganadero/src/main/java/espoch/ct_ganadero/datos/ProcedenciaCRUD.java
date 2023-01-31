@@ -28,7 +28,7 @@ public class ProcedenciaCRUD implements iCRUD<Procedencia> {
         return !(procedenciaBuscada == null);
     }
     
-    public boolean contiene(int id) {
+    public boolean contiene(String id) {
         Procedencia procedenciaBuscada = repProcedencia.findById(id).orElse(null);
         return !(procedenciaBuscada == null);
     }
@@ -39,7 +39,7 @@ public class ProcedenciaCRUD implements iCRUD<Procedencia> {
         guardar(nuevoElemento);
     }
     
-    public void modificar(int id, Procedencia nuevoElemento) throws Exception {
+    public void modificar(String id, Procedencia nuevoElemento) throws Exception {
         eliminar(id);
         guardar(nuevoElemento);
     }
@@ -51,7 +51,7 @@ public class ProcedenciaCRUD implements iCRUD<Procedencia> {
         repProcedencia.delete(elemento);
     }
     
-    public Procedencia eliminar(int id) throws Exception {
+    public Procedencia eliminar(String id) throws Exception {
         if (!contiene(id))
             throw new Exception("Elemento no fue encontrado!");
         Procedencia procedencia = buscar(id);
@@ -66,7 +66,7 @@ public class ProcedenciaCRUD implements iCRUD<Procedencia> {
         return repProcedencia.findById(elemento.getId()).get();
     }
     
-    public Procedencia buscar(int id) throws Exception {
+    public Procedencia buscar(String id) throws Exception {
         if (!contiene(id))
             throw new Exception("Elemento no fue encontrado!");
         return repProcedencia.findById(id).get();

@@ -79,7 +79,7 @@ public class LechePorVacaCRUD implements iCRUD<LechePorVaca> {
         return repositorio.findById(id).get();
     }
     
-    public boolean existeRegistro(String idCabezaGanado, String idRegistro, String turno) throws Exception {
+    public boolean existeRegistro(int idCabezaGanado, String idRegistro, String turno) throws Exception {
         LechePorVaca registro = repositorio.findByVacaAndRegistro(idCabezaGanado, idRegistro, turno);
         return registro != null;
     }

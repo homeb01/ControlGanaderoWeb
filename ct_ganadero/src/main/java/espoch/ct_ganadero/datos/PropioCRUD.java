@@ -2,7 +2,7 @@ package espoch.ct_ganadero.datos;
 
 import espoch.ct_ganadero.modelo.Propio;
 import espoch.ct_ganadero.modelo.Raza;
-import espoch.ct_ganadero.repositorios.RepositorioCabezaGanado;
+import espoch.ct_ganadero.repositorios.RepositorioPropio;
 import java.util.List;
 import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service;
 public class PropioCRUD implements iCRUD<Propio> {
 
     @Autowired
-    private RepositorioCabezaGanado<Propio> repositorio;
+    private RepositorioPropio repositorio;
 
     @Override
     public List<Propio> listar() {
@@ -33,7 +33,7 @@ public class PropioCRUD implements iCRUD<Propio> {
         return !(buscado == null);
     }
     
-    public boolean contiene(String id) {
+    public boolean contiene(int id) {
         Propio buscado = repositorio.findById(id).orElse(null);
         return !(buscado == null);
     }
@@ -60,7 +60,7 @@ public class PropioCRUD implements iCRUD<Propio> {
         return repositorio.findById(elemento.getId()).get();
     }
     
-    public Propio buscar(String id) throws Exception {
+    public Propio buscar(int id) throws Exception {
         if (!contiene(id)) {
             throw new Exception("Elemento no fue encontrado!");
         }

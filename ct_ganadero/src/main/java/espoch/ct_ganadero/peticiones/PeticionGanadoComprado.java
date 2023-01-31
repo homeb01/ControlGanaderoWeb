@@ -10,7 +10,6 @@ import lombok.ToString;
 @EqualsAndHashCode
 @ToString
 public class PeticionGanadoComprado {
-    private final String id;
     private final String id_raza;
     private final String nombre;
     private final char sexo;

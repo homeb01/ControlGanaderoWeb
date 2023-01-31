@@ -1,8 +1,5 @@
 package espoch.ct_ganadero.logica;
 
-import java.util.Calendar;
-import java.util.regex.Pattern;
-
 public class ValidacionCabezaGanado {
 
     public static boolean idValido(String id) {
@@ -33,6 +30,18 @@ public class ValidacionCabezaGanado {
     }
     
     public static boolean edadValida(int edad) {
-        return edad > 0 && edad < 100;
+        return edad > 0 && edad < 50;
+    }
+
+    public static boolean razaValida(String id_raza) {
+        return !id_raza.isBlank();
+    }
+
+    public static boolean procedenciaValida(String id_procedencia) {
+        return !id_procedencia.isBlank();
+    }
+
+    public static boolean estaViva(String estado) {
+        return estado.equals("VIVA");
     }
 }

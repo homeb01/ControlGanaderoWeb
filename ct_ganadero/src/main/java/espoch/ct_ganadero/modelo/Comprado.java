@@ -13,8 +13,8 @@ public class Comprado extends Ajeno {
     public Comprado() {
     }
 
-    public Comprado(float precio, Procedencia procedencia, int edad, String id, Raza raza, String nombre, char sexo) {
-        super(procedencia, edad, id, raza, nombre, sexo);
+    public Comprado(float precio, Procedencia procedencia, int edad, Raza raza, String nombre, char sexo) {
+        super(procedencia, edad, raza, nombre, sexo, "COMPRADO");
         this.precio = precio;
     }
     
@@ -33,7 +33,7 @@ public class Comprado extends Ajeno {
     }
 
     @Override
-    public String getId() {
+    public int getId() {
         return id;
     }
 
@@ -67,7 +67,7 @@ public class Comprado extends Ajeno {
     }
 
     @Override
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 

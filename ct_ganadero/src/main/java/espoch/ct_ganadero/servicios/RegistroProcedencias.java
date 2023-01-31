@@ -27,7 +27,7 @@ public class RegistroProcedencias {
         return procedencia;
     }
     
-    public Procedencia modificar(int id, PeticionProcedencia peticion) throws Exception {
+    public Procedencia modificar(String id, PeticionProcedencia peticion) throws Exception {
         boolean procedenciaValida = ValidacionProcedencia.procedenciaValida(peticion.getProcedencia());
         
         if (!procedenciaValida)
@@ -42,11 +42,11 @@ public class RegistroProcedencias {
         return procedenciaCrud.listar();
     }
         
-    public Procedencia ver(int id) throws Exception {
+    public Procedencia ver(String id) throws Exception {
         return procedenciaCrud.buscar(id);
     }
     
-    public Procedencia eliminar(int id) throws Exception {
+    public Procedencia eliminar(String id) throws Exception {
         return procedenciaCrud.eliminar(id);
     }
 }

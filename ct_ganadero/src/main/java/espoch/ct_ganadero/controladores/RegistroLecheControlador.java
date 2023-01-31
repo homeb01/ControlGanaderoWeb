@@ -13,6 +13,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -23,6 +24,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+@CrossOrigin
 @RequestMapping("/")
 @AllArgsConstructor
 public class RegistroLecheControlador {
@@ -85,6 +87,27 @@ public class RegistroLecheControlador {
         return new ResponseEntity(registrosLeche, headers, HttpStatus.OK);
     }
 
+    @GetMapping("/leche/registros/{id}")
+    public ResponseEntity ver(@PathVariable("id") String id) {
+        RegistroLeche lechePorVaca;
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        try {
+            lechePorVaca = registro.ver(id);
+            return new ResponseEntity(lechePorVaca, headers, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity(e.getMessage(), headers, HttpStatus.NOT_FOUND);
+        }
+    }
+    
+    @GetMapping("/leche/registros/hoy")
+    public ResponseEntity verHoy() {
+        List<LechePorVaca> registrosHoy = registro.listarHoy();
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        return new ResponseEntity(registrosHoy, headers, HttpStatus.OK);
+    }
+
     @GetMapping("/leche/registros/ver/{id}")
     public ResponseEntity ver(@PathVariable("id") int id) {
         LechePorVaca lechePorVaca;
@@ -98,20 +121,6 @@ public class RegistroLecheControlador {
         }
     }
 
-    @GetMapping("/leche/registros/{id}")
-    public ResponseEntity ver(@PathVariable("id") String id) {
-        HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.APPLICATION_JSON);
-        try {
-            id = ValidacionFecha.idAFormatoAceptado(id);
-            RegistroLeche registroLeche;
-            registroLeche = registro.ver(id);
-            return new ResponseEntity(registroLeche, headers, HttpStatus.OK);
-        } catch (Exception e) {
-            return new ResponseEntity(e.getMessage(), headers, HttpStatus.NOT_FOUND);
-        }
-    }
-    
     @PutMapping("/leche/registrar/totalterneros")
     public ResponseEntity registrarTotalTerneros(@RequestBody PeticionTotalTerneros peticion) throws Exception {
         RegistroLeche registroLeche;
@@ -124,7 +133,7 @@ public class RegistroLecheControlador {
         }
         return new ResponseEntity(registroLeche, headers, HttpStatus.CREATED);
     }
-    
+
     @GetMapping("/leche/registros/totalmanana/{id}")
     public ResponseEntity verTotalManana(@PathVariable("id") String id) {
         HttpHeaders headers = new HttpHeaders();
@@ -137,7 +146,7 @@ public class RegistroLecheControlador {
             return new ResponseEntity(e.getMessage(), headers, HttpStatus.NOT_FOUND);
         }
     }
-    
+
     @GetMapping("/leche/registros/totaltarde/{id}")
     public ResponseEntity verTotalTarde(@PathVariable("id") String id) {
         HttpHeaders headers = new HttpHeaders();

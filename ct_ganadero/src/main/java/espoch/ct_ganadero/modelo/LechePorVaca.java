@@ -24,7 +24,7 @@ public class LechePorVaca {
 
     @ManyToOne
     @JoinColumn(name = "id_cabeza_ganado")
-    Propio cabezaGanado;
+    CabezaGanado cabezaGanado;
     
     @ManyToOne
     @JoinColumn(name = "id_usuario")
@@ -39,7 +39,7 @@ public class LechePorVaca {
     public LechePorVaca() {
     }
 
-    public LechePorVaca(RegistroLeche registro, Propio cabezaGanado, Usuario usuario, String turno, float total) {
+    public LechePorVaca(RegistroLeche registro, CabezaGanado cabezaGanado, Usuario usuario, String turno, float total) {
         this.registro = registro;
         this.cabezaGanado = cabezaGanado;
         this.usuario = usuario;
@@ -55,7 +55,7 @@ public class LechePorVaca {
         return registro;
     }
 
-    public Propio getCabezaGanado() {
+    public CabezaGanado getCabezaGanado() {
         return cabezaGanado;
     }
 
@@ -79,7 +79,7 @@ public class LechePorVaca {
         this.registro = registro;
     }
 
-    public void setCabezaGanado(Propio cabezaGanado) {
+    public void setCabezaGanado(CabezaGanado cabezaGanado) {
         this.cabezaGanado = cabezaGanado;
     }
 
